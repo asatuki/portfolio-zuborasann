@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+<div class = "flash">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
+<%= attachment_image_tag @recipe, :image, :fill, 500, 500, class: "", size:'500x500'%>
+
+<h2>料理名</h2><%= @recipe.title %>
+<h2>材料一覧</h2><%= @recipe.ingredient %>
+<h2>調理手順</h2><%= @recipe.process %>
+
+<h2><%= link_to "MYレシピ一覧", recipes_path %><strong>|</strong><%= link_to "レシピの編集", recipe_edit_path %><h2>

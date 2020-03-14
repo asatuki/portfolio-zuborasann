@@ -1,0 +1,23 @@
+<h1>レシピ新規登録</h1>
+
+<% if flash[:notice] %>
+<div class = "flash">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
+
+<%= form_for @recipe, url: recipe_create_path do |f| %>
+
+<%= f.attachment_field :image, placeholder: "画像" %>
+
+<h2>料理名</h2>
+<%= f.text_field :title %>
+<h2>材料</h2>
+<%= f.text_field :ingredient %>
+<h2>調理手順</h2>
+<%= f.text_area :process %>
+<%= f.submit "レシピ登録" %>
+<% end %>
+
+<%= link_to "MYレシピ一覧", recipes_path %>

@@ -1,0 +1,20 @@
+<h1>レシピ編集</h1>
+
+<% if flash[:notice] %>
+<div class = "flash">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
+<%= form_for @recipe, url: recipe_update_path(@recipe) do |f| %>
+
+<%= f.attachment_field :image, placeholder: "画像" %>
+
+<h2>料理名</h2>
+<%= f.text_field :title %>
+<h2>材料</h2>
+<%= f.text_field :ingredient %>
+<h2>調理手順</h2>
+<%= f.text_area :process %>
+<%= f.submit "変更を保存" %>
+<% end %>
