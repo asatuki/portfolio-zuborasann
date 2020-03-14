@@ -1,0 +1,16 @@
+<h1>MYレシピ一覧</h1>
+
+<% if flash[:notice] %>
+<div class = "flash">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
+<div class = "pull-right">
+	<%= link_to "新規登録", recipe_new_path, class:"btn btn-info btn-md" %>
+</div>
+
+<% @recipes.each do |recipe| %>
+<%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
+<%= link_to recipe.title, recipe_show_path(recipe) %>
+<% end %>
