@@ -11,3 +11,6 @@
 <h2>調理手順</h2><%= @recipe.process %>
 
 <h2><%= link_to "MYレシピ一覧", recipes_path %><strong>|</strong><%= link_to "レシピの編集", recipe_edit_path %><h2>
+
+<%= link_to "削除", recipe_destroy_path(@recipe), method: :delete, "data-confirm" => "消しちまうぞ！！！！" %>
+
