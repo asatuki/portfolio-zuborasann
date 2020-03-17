@@ -18,7 +18,6 @@ class RecipesController < ApplicationController
 		   flash[:notice] = "レシピの更新に成功しました"
 		   redirect_to recipe_show_path(@recipe)
 		else
-		   @recipe = Recipe.find(params[:id])
 		   flash[:notice] = "レシピの更新に失敗しました"
 		   render :edit
 		end
@@ -30,11 +29,11 @@ class RecipesController < ApplicationController
 
 	def create
 		@recipe = Recipe.new(recipe_params)
+		@recipe.user_id = current_user.id
 		if @recipe.save
 		   flash[:notice] = "レシピの投稿に成功しました"
 		   redirect_to recipes_path
 	    else
-	       @recipe = Recipe.new
 	       flash[:notice] = "レシピの投稿に失敗しました"
 	       render :new
 	    end
@@ -48,5 +47,5 @@ class RecipesController < ApplicationController
 end
 
     def recipe_params
-    	params.require(:recipe).permit(:ingredient, :title, :process, :image)
+    	params.require(:recipe).permit(:ingredient, :title, :process, :image, :user_id)
     end

@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   patch "recipes/:id", to: "recipes#update", :as => :recipe_update
   post "recipes/", to: "recipes#create", :as => :recipe_create
   delete "recipes/:id", to: "recipes#destroy", :as => :recipe_destroy
+
+  resources :recipes, only: [:new, :create, :index, :show] do
+        resources :favorites, only: [:create, :destroy]
+  end
 end
