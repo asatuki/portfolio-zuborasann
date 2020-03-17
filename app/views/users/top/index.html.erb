@@ -1,1 +1,7 @@
-少しは成長した？
+<%= link_to "MYレシピ一覧", recipes_path %>
+
+<%= link_to destroy_user_session_path, method: :delete do %>
+<span>ログアウト</span><% end %>
+
+ <%= link_to user_session_path do %>
+  <span>Login</span><% end %>
