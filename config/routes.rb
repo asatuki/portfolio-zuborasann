@@ -9,16 +9,8 @@ Rails.application.routes.draw do
   root to: "users/top#index"
   get '/about/', to: 'users/top#about'
 
-
-  get "recipes/", to: "recipes#index"
-  get "recipes/new", to: "recipes#new", :as => :recipe_new
-  get "recipes/:id", to: "recipes#show", :as => :recipe_show
-  get "recipes/:id/edit", to: "recipes#edit", :as => :recipe_edit
-  patch "recipes/:id", to: "recipes#update", :as => :recipe_update
-  post "recipes/", to: "recipes#create", :as => :recipe_create
-  delete "recipes/:id", to: "recipes#destroy", :as => :recipe_destroy
-
-  resources :recipes, only: [:new, :create, :index, :show] do
-        resources :favorites, only: [:create, :destroy]
+  resources :recipes do
+        resource :favorites, only: [:create, :destroy]
+        resource :post_messages, only: [:create, :destroy]
   end
 end

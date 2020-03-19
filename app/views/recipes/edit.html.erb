@@ -6,7 +6,7 @@
 </div>
 <% end %>
 
-<%= form_for @recipe, url: recipe_update_path(@recipe) do |f| %>
+<%= form_for @recipe, url: recipe_path(@recipe) do |f| %>
 
 <%= f.attachment_field :image, placeholder: "画像" %>
 

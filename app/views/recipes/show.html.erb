@@ -10,15 +10,28 @@
 <h2>材料一覧</h2><%= @recipe.ingredient %>
 <h2>調理手順</h2><%= @recipe.process %>
 
-<h2><%= link_to "MYレシピ一覧", recipes_path %><strong>|</strong><%= link_to "レシピの編集", recipe_edit_path %><h2>
+<h2><%= link_to "MYレシピ一覧", recipes_path %></h2>
 
 <% if @recipe.user == current_user %>
-<%= link_to "削除", recipe_destroy_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
+<h2><%= link_to "レシピの編集", edit_recipe_path %><h2>
 <% end %>
 
+<% if @recipe.user == current_user %>
+<%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
+<% end %>
+
+<% @recipe.post_messages.each do |post_message| %>
+<%= post_message.user.name %>
+<%= post_message.message %>
+<% end %>
+
+<%= form_for [@recipe, @post_message] do |f| %>
+<%= f.text_area :message %>
+<%= f.submit "送信する" %>
+<% end %>
 
 <% if @recipe.favorited_by?(current_user) %>
-<%= link_to recipe_favorite_path(@recipe), method: :delete do %>
+<%= link_to recipe_favorites_path(@recipe), method: :delete do %>
 <%= @recipe.favorites.count %> お気に入り
 <% end %>
 

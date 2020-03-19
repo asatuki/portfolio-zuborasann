@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
 	def show
 		@recipe = Recipe.find(params[:id])
+		@post_message = PostMessage.new
 	end
 
 	def edit
@@ -16,7 +17,7 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.find(params[:id])
 		if @recipe.update(recipe_params)
 		   flash[:notice] = "レシピの更新に成功しました"
-		   redirect_to recipe_show_path(@recipe)
+		   redirect_to recipe_path(@recipe)
 		else
 		   flash[:notice] = "レシピの更新に失敗しました"
 		   render :edit
