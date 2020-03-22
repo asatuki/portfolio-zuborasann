@@ -23,6 +23,11 @@
 <% @recipe.post_messages.each do |post_message| %>
 <%= post_message.user.name %>
 <%= post_message.message %>
+
+<% if post_message.user == current_user %>
+<%= link_to "削除", recipe_post_message_path(@recipe.id, post_message.id), method: :delete  %>
+<% end %>
+
 <% end %>
 
 <%= form_for [@recipe, @post_message] do |f| %>

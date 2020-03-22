@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   resources :recipes do
         resource :favorites, only: [:create, :destroy]
-        resource :post_messages, only: [:create, :destroy]
+        resources :post_messages, only: [:create, :destroy]
   end
 end
