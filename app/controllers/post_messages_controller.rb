@@ -8,6 +8,12 @@ class PostMessagesController < ApplicationController
 		redirect_to recipe_path(recipe)
 	end
 
+	def destroy
+		message = PostMessage.find_by(id: params[:id])
+		message.destroy
+		redirect_to recipe_path(params[:recipe_id])
+	end
+
 	private
 	  def post_message_params
 	  	  params.require(:post_message).permit(:message)
