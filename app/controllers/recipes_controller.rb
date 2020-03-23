@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+	before_action :authenticate_user!, except: [:show, :destroy]
 
 	def index
 		@recipes = Recipe.all
@@ -43,7 +44,11 @@ class RecipesController < ApplicationController
 	def destroy
 		@recipe = Recipe.find(params[:id])
 		@recipe.destroy
-		redirect_to recipes_path
+		if user_signed_in?
+		   redirect_to root_path
+	    else admin_signed_in?
+	       redirect_to admins_top_path
+	    end
 	end
 end
 
