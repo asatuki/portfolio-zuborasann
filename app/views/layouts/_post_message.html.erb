@@ -1,36 +1,34 @@
-	<% recipe.post_messages.each do |post_message| %>
-	<%= post_message.user.name %>
-	<%= post_message.message %>
+<% recipe.post_messages.each do |post_message| %>
+  <%= post_message.user.name %>
+  <%= post_message.message %>
 
-	<% if post_message.user == current_user %>
-	<%= link_to "削除", recipe_post_message_path(recipe.id, post_message.id), method: :delete, remote: true  %>
-	<% end %><br><br>
+  <% if post_message.user == current_user %>
+    <%= link_to "削除", recipe_post_message_path(recipe.id, post_message.id), method: :delete, remote: true  %>
+  <% end %><br><br>
 
-	<% end %>
+<% end %>
 
-	<% if user_signed_in? == false %>
-	<h2><%= link_to "レシピ一覧", root_path %></h2>
-	<% end %>
+<% if user_signed_in? == false %>
+  <h2><%= link_to "レシピ一覧", root_path %></h2>
+<% end %>
 
-	<% if user_signed_in? %>
+<% if user_signed_in? %>
 
-	<% if recipe.favorited_by?(current_user) %>
-	<%= link_to recipe_favorites_path(recipe), method: :delete , remote: true do %>
-	<%= recipe.favorites.count %> お気に入り
-	<% end %>
+ <% if recipe.favorited_by?(current_user) %>
+   <%= link_to recipe_favorites_path(recipe), method: :delete , remote: true do %>
+   <%= recipe.favorites.count %> お気に入り
+   <% end %>
 
-	<% else %>
-	<%= link_to recipe_favorites_path(recipe), method: :post,  remote: true do %>
-	<%= recipe.favorites.count %> お気に入り
-	<% end %>
-	<% end %><br><br>
+ <% else %>
+   <%= link_to recipe_favorites_path(recipe), method: :post, remote: true do %>
+   <%= recipe.favorites.count %> お気に入り
+   <% end %>
+ <% end %>
+<% end %><br><br>
 
-	<% if user_signed_in? %>
-	<%= form_for [recipe, post_message], remote: true do |f| %>
-	<%= f.text_area :message %>
-	<%= f.submit "送信する" %>
-	<% end %>
-
-
-	<% end %>
-	<% end %>
+<% if user_signed_in? %>
+  <%= form_for [recipe, post_message], remote: true do |f| %>
+  <%= f.text_area :message %>
+  <%= f.submit "送信する" %>
+  <% end %>
+<% end %>

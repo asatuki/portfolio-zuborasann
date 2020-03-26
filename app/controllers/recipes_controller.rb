@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_action :authenticate_user!, except: [:show, :destroy]
+before_action :authenticate_user!, except: [:show, :destroy]
 
 	def index
 		@recipes = Recipe.all

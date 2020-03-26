@@ -16,8 +16,9 @@ class PostMessagesController < ApplicationController
 		@post_message = PostMessage.new
 	end
 
-	private
-	  def post_message_params
-	  	  params.require(:post_message).permit(:message)
-	  end
+private
+	def post_message_params
+	  	params.require(:post_message).permit(:message)
+	end
+
 end
