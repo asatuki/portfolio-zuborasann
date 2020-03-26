@@ -6,4 +6,5 @@ class Users::TopController < ApplicationController
 
 	def about
 	end
+
 end

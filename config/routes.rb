@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins, controllers: {
     registrations: "admins/registrations",
     sessions: "admins/sessions"
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   get '/about/', to: 'users/top#about'
 
   get "/admins", to: "admins/top#index", :as => :admins_top
+
+  get "/search", to: "search#index", :as => :search
 
   resources :recipes do
         resource :favorites, only: [:create, :destroy]

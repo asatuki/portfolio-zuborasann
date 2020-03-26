@@ -1,5 +1,5 @@
-  <% @recipes.each do |recipe| %>
-<%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
-<%= link_to recipe.title, recipe_path(recipe) %>
+<% @recipes.each do |recipe| %>
+  <%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
+  <%= link_to recipe.title, recipe_path(recipe) %>
 <% end %>
 
