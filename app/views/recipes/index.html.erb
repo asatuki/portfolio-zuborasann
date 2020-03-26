@@ -10,10 +10,6 @@
 	<%= link_to "新規登録", new_recipe_path %>
 </div>
 
-<div>
-	<%= link_to "Top", root_path %>
-</div>
-
 <% current_user.recipes.each do |recipe| %>
 <%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
 <%= link_to recipe.title, recipe_path(recipe) %>

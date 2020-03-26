@@ -17,11 +17,11 @@ class RecipesController < ApplicationController
 	def update
 		@recipe = Recipe.find(params[:id])
 		if @recipe.update(recipe_params)
-		   flash[:notice] = "レシピの更新に成功しました"
-		   redirect_to recipe_path(@recipe)
+			flash[:notice] = "レシピの更新に成功しました"
+			redirect_to recipe_path(@recipe)
 		else
-		   flash[:notice] = "レシピの更新に失敗しました"
-		   render :edit
+			flash[:notice] = "レシピの更新に失敗しました"
+			render :edit
 		end
 	end
 
@@ -33,25 +33,25 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.new(recipe_params)
 		@recipe.user_id = current_user.id
 		if @recipe.save
-		   flash[:notice] = "レシピの投稿に成功しました"
-		   redirect_to recipes_path
-	    else
-	       flash[:notice] = "レシピの投稿に失敗しました"
-	       render :new
-	    end
+			flash[:notice] = "レシピの投稿に成功しました"
+			redirect_to recipes_path
+		else
+			flash[:notice] = "レシピの投稿に失敗しました"
+			render :new
+		end
 	end
 
 	def destroy
 		@recipe = Recipe.find(params[:id])
 		@recipe.destroy
 		if user_signed_in?
-		   redirect_to root_path
-	    else admin_signed_in?
-	       redirect_to admins_top_path
-	    end
+			redirect_to root_path
+		else admin_signed_in?
+			redirect_to admins_top_path
+		end
+	end
+
+	def recipe_params
+		params.require(:recipe).permit(:ingredient, :title, :process, :image, :user_id)
 	end
 end
-
-    def recipe_params
-    	params.require(:recipe).permit(:ingredient, :title, :process, :image, :user_id)
-    end
