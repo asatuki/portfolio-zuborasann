@@ -10,29 +10,71 @@
   </head>
 
   <body>
+   <nav class="navbar navbar-expand-lg navbar-light">
+     <a class="navbar-brand" href="/"><h1>ずぼらさん</h1></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false">
+       <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <body>
-  <nav class="nav navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
- <li>
-        <%= link_to root_path do %>top
-        <% end %>
-      </li></div>
-    </div></nav>
+  <div class="collapse navbar-collapse" id="Navber">
+    <ul class="navbar-nav mr-auto">
 
+    <% if user_signed_in? %>
+      <li class="nav-item">
+        <a class="nav-link" href="/about"> あばうと</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/recipes"> まいれしぴ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-method="delete" href="/users/sign_out"> ろぐあうと</a>
+      </li>
+    </ul>
 
+    <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="けんさく" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">けんさく</button>
+    </form>
+  </div>
+  </nav>
 
+    <% else %>
+    <% if admin_signed_in? %>
 
+      <li class="nav-item">
+        <a class="nav-link" data-method="delete" href="/admins/sign_out"> ろぐあうと</a>
+      </li>
+    </ul>
 
+    <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="けんさく" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">けんさく</button>
+    </form>
+  </div>
+  </nav>
 
+    <% else %>
 
+      <li class="nav nav-item">
+        <a class="nav-link" href="/about"> あばうと</a>
+      </li>
+      <li class="nav nav-item">
+        <a class="nav-link"　data-method="post" href="/users/sign_in"> ろぐいん</a>
+      </li>
+      <li class="nav nav-item">
+        <a class="nav-link"　data-method="delete" href="/admins/sign_in"> かんりしゃ</a>
+      </li>
+    </ul>
 
+    <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="けんさく" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">けんさく</button>
+    </form>
+  </div>
+　</nav>
 
-
-
-
-
+ <% end %>
+<% end %>
     <%= yield %>
   </body>
 </html>

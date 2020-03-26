@@ -5,13 +5,15 @@ class PostMessagesController < ApplicationController
 		message = current_user.post_messages.new(post_message_params)
 		message.recipe_id = recipe.id
 		message.save
-		redirect_to recipe_path(recipe)
+		@recipe = recipe
+		@post_message = PostMessage.new
 	end
 
 	def destroy
 		message = PostMessage.find_by(id: params[:id])
 		message.destroy
-		redirect_to recipe_path(params[:recipe_id])
+		@recipe = Recipe.find(params[:recipe_id])
+		@post_message = PostMessage.new
 	end
 
 	private

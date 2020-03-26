@@ -21,7 +21,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
    	      when :user
    			  root_path
    	      when :admin
-   	    	  admins_top_path
+   	    	  root_path
    	   end
    	end
 end

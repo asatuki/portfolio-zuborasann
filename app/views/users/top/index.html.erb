@@ -1,11 +1,3 @@
-<%= link_to "MYレシピ一覧", recipes_path %>
-
-<%= link_to destroy_user_session_path, method: :delete do %>
-<span>ログアウト</span><% end %>
-
- <%= link_to user_session_path do %>
-  <span>Login</span><% end %><br>
-
   <% @recipes.each do |recipe| %>
 <%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
 <%= link_to recipe.title, recipe_path(recipe) %>

@@ -10,50 +10,15 @@
 <h2>材料一覧</h2><%= @recipe.ingredient %>
 <h2>調理手順</h2><%= @recipe.process %><br><br>
 
-<% @recipe.post_messages.each do |post_message| %>
-<%= post_message.user.name %>
-<%= post_message.message %>
-
-<% if post_message.user == current_user %>
-<%= link_to "削除", recipe_post_message_path(@recipe.id, post_message.id), method: :delete  %>
-<% end %><br><br>
-
-<% end %>
-
-<% if user_signed_in? == false %>
-<h2><%= link_to "レシピ一覧", root_path %></h2>
-<% end %>
-
-<% if user_signed_in? %>
-
-<% if @recipe.favorited_by?(current_user) %>
-<%= link_to recipe_favorites_path(@recipe), method: :delete do %>
-<%= @recipe.favorites.count %> お気に入り
-<% end %>
-
-<% else %>
-<%= link_to recipe_favorites_path(@recipe), method: :post do %>
-<%= @recipe.favorites.count %> お気に入り
-<% end %>
-<% end %><br><br>
-
-<% if user_signed_in? %>
-<%= form_for [@recipe, @post_message] do |f| %>
-<%= f.text_area :message %>
-<%= f.submit "送信する" %>
-<% end %>
-
-<% end %>
+<div id="post_message">
+<%= render partial: 'layouts/post_message', locals: {recipe: @recipe, post_message: @post_message } %>
+</div>
 
 <% if @recipe.user == current_user %>
   <h2><%= link_to "レシピの編集", edit_recipe_path %><h2>
 	<%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
-
-<% end %>
-
 <% elsif admin_signed_in? %>
   <%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
-
 <% end %>
 
 
