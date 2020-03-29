@@ -1,0 +1,6 @@
+
+    <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
+    <%= text_field_tag :search, nil, :placeholder => 'けんさく' %>
+    <%= hidden_field_tag :target, 'recipe' %>
+    <%= submit_tag 'けんさく', :title => nil %>
+    <% end %>
