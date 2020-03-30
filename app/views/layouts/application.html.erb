@@ -5,79 +5,75 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
- <nav class="navbar navbar-expand-lg navbar-light">
-   <a class="navbar-brand" href="/"><h1>ずぼらさん</h1></a>
-   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false">
-     <span class="navbar-toggler-icon"></span>
-   </button>
+  <nav class="navbar navbar-dark bg-warning">
+    <a class="navbar-brand" href="/">ずぼらさん</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-   <div class="collapse navbar-collapse" id="Navber">
-    <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav mr-auto">
 
       <% if user_signed_in? %>
-
-      <li class="nav-item">
-        <a class="nav-link" href="/about"> あばうと</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/recipes"> まいれしぴ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-method="delete" href="/users/sign_out"> ろぐあうと</a>
-      </li>
-    </ul>
+        <br>
+        <li class="nav-item">
+          <a class="nav-link" href="/rank">Popular Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recipes">My Recipe</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-method="delete" href="/users/sign_out">LogOut
+          </a>
+        </li>
+      </ul><br>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
-    <%= text_field_tag :search, nil, :placeholder => 'けんさく' %>
+    <%= text_field_tag :search, nil, :placeholder => 'search' %>
     <%= hidden_field_tag :target, 'recipe' %>
-    <%= submit_tag 'けんさく', :title => nil %>
+    <%= submit_tag 'search', :title => nil %>
     <% end %>
-  </div>
-</nav>
+    </div>
+  </nav>
 
 <% else %>
  　　　<% if admin_signed_in? %>
 
-　　　 <li class="nav-item">
-        <a class="nav-link" data-method="delete" href="/admins/sign_out"> ろぐあうと</a>
-      </li>
-    </ul>
+        　<a class="nav-link" data-method="delete" href="/admins/sign_out">LogOut
+        　</a>
+    　</ul>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
-    <%= text_field_tag :search, nil, :placeholder => 'けんさく' %>
+    <%= text_field_tag :search, nil, :placeholder => 'search' %>
     <%= hidden_field_tag :target, 'recipe' %>
-    <%= submit_tag 'けんさく', :title => nil %>
+    <%= submit_tag 'search', :title => nil %>
     <% end %>
   </div>
 </nav>
 
 <% else %>
 
-      <li class="nav nav-item">
-        <a class="nav-link" href="/about"> あばうと</a>
+    　<li class="nav nav-item">
+        <a class="nav-link" href="/rank">Popular Recipes</a>
       </li>
       <li class="nav nav-item">
-        <a class="nav-link"　data-method="post" href="/users/sign_in"> ろぐいん</a>
+        <a class="nav-link"　data-method="post" href="/users/sign_in">LogIn</a>
       </li>
       <li class="nav nav-item">
-        <a class="nav-link"　data-method="delete" href="/admins/sign_in"> かんりしゃ
+        <a class="nav-link"　data-method="delete" href="/admins/sign_in">Admin
         </a>
       </li>
-    </ul>
+    </ul><br>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
-    <%= text_field_tag :search, nil, :placeholder => 'けんさく' %>
+    <%= text_field_tag :search, nil, :placeholder => 'search' %>
     <%= hidden_field_tag :target, 'recipe' %>
-    <%= submit_tag 'けんさく', :title => nil %>
+    <%= submit_tag 'search', :title => nil %>
     <% end %>
   </div>
 </nav>
