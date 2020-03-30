@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-p{
-	font-family: 'Gloria Hallelujah', cursive;
+h2.body { font-family: "M PLUS Rounded 1c";
+          writing-mode: vertical-rl;
+}
+
+h1.title2 { font-family: "Nikukyu";
+            font-size: 700%;
+            writing-mode: vertical-rl;
 }

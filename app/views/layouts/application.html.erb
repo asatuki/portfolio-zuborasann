@@ -5,13 +5,15 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-warning">
-    <a class="navbar-brand" href="/">ずぼらさん</a>
+  <nav class="navbar navbar-dark" style="background-color:#AEFFBD;">
+    <a class="navbar-brand" style="color:#000000;" href="/"><h1 class = "title">ずぼらさん</h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,18 +22,18 @@
       <ul class="navbar-nav mr-auto">
 
       <% if user_signed_in? %>
-        <br>
+
         <li class="nav-item">
-          <a class="nav-link" href="/rank">Popular Recipes</a>
+          <a class="nav-link text-dark" href="/rank">Popular Recipes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/recipes">My Recipe</a>
+          <a class="nav-link text-dark" href="/recipes">My Recipe</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-method="delete" href="/users/sign_out">LogOut
+          <a class="nav-link text-dark" data-method="delete" href="/users/sign_out">LogOut
           </a>
         </li>
-      </ul><br>
+      </ul>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
     <%= text_field_tag :search, nil, :placeholder => 'search' %>
@@ -44,8 +46,8 @@
 <% else %>
  　　　<% if admin_signed_in? %>
 
-        　<a class="nav-link" data-method="delete" href="/admins/sign_out">LogOut
-        　</a>
+        <a class="nav-link text-dark" data-method="delete" href="/admins/sign_out">LogOut
+        </a>
     　</ul>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
@@ -59,16 +61,16 @@
 <% else %>
 
     　<li class="nav nav-item">
-        <a class="nav-link" href="/rank">Popular Recipes</a>
+        <a class="nav-link text-dark" href="/rank">Popular Recipes</a>
       </li>
       <li class="nav nav-item">
-        <a class="nav-link"　data-method="post" href="/users/sign_in">LogIn</a>
+        <a class="nav-link text-dark" data-method="post" href="/users/sign_in">LogIn</a>
       </li>
       <li class="nav nav-item">
-        <a class="nav-link"　data-method="delete" href="/admins/sign_in">Admin
+        <a class="nav-link text-dark"　data-method="delete" href="/admins/sign_in">Admin
         </a>
       </li>
-    </ul><br>
+    </ul>
 
     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
     <%= text_field_tag :search, nil, :placeholder => 'search' %>
