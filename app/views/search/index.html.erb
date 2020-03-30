@@ -1,4 +1,32 @@
-<% @recipes.each do |recipe| %>
-  <%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
-  <%= link_to recipe.title, recipe_path(recipe) %>
-<% end %>
+<div class="container">
+
+  <div class="row">
+  	<div class="col-md-12">
+  	  <div class="text-center">
+  	    <h1 class="title3">ケンサクケッカ</h1>
+  	  </div>
+    </div>
+  </div>
+
+
+  <table class="table">
+  	<tbody>
+      <% @recipes.each_slice(3) do |recipe3| %>
+      <div class="row">
+      	<% recipe3.each do |recipe| %>
+      	<div class="col-md- text-center">
+      	  <td>
+      	  	<div class="text-center">
+      	  	<%= attachment_image_tag recipe, :image, :fill, 200, 200, class: "", size:'200x200'%><br>
+            <%= link_to recipe.title, recipe_path(recipe) %><br>
+            <%= recipe.favorites.count %>&nbsp;いいね
+            </div>
+          </td>
+        </div>
+        <% end %>
+        <tr>
+        </tr>
+      </div>
+      <% end %>
+    </tbody>
+  </table>

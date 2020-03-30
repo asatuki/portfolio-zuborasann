@@ -1,16 +1,43 @@
-<h2>MYレシピ一覧</h2>
+<div class="container">
 
-<% if flash[:notice] %>
-  <div class = "flash">
-  <%= flash[:notice] %>
+  <div class="row">
+  	<div class="col-md-12">
+  	  <div class="text-center">
+  	    <h1 class="title3">マイレシピ</h1>
+  	  </div>
+    </div>
   </div>
-<% end %>
 
-<div>
-  <%= link_to "新規登録", new_recipe_path %>
-</div>
 
-<% current_user.recipes.each do |recipe| %>
-  <%= attachment_image_tag recipe, :image, :fill, 100, 100, class: "", size:'100x100'%>
-  <%= link_to recipe.title, recipe_path(recipe) %>
-<% end %>
+  <table class="table">
+  	<tbody>
+      <% current_user.recipes.each_slice(3) do |recipe3| %>
+      <div class="row">
+      	<% recipe3.each do |recipe| %>
+      	<div class="col-md- text-center">
+      	  <td>
+      	  	<div class="text-center">
+      	  	<%= attachment_image_tag recipe, :image, :fill, 200, 200, class: "", size:'200x200'%><br>
+            <%= link_to recipe.title, recipe_path(recipe) %><br>
+            <%= recipe.favorites.count %>&nbsp;いいね
+            </div>
+          </td>
+        </div>
+        <% end %>
+        <tr>
+        </tr>
+      </div>
+      <% end %>
+    </tbody>
+  </table>
+
+　<div class="row">
+    <div class="col-md-12 clearfix">
+      <div class="float-right test-box">
+      	<button type="button" class="btn btn-success">
+          <a class="nav-link text-dark" href="/recipes/new">新規登録</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
