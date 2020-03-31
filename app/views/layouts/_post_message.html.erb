@@ -1,17 +1,4 @@
-<% recipe.post_messages.each do |post_message| %>
-  <%= post_message.user.name %>
-  <%= post_message.message %>
-
-  <% if post_message.user == current_user %>
-    <%= link_to "削除", recipe_post_message_path(recipe.id, post_message.id), method: :delete, remote: true  %>
-  <% end %><br><br>
-
-<% end %>
-
-<% if user_signed_in? == false %>
-  <h2><%= link_to "レシピ一覧", root_path %></h2>
-<% end %>
-
+<div class="text-right">
 <% if user_signed_in? %>
 
  <% if recipe.favorited_by?(current_user) %>
@@ -25,10 +12,41 @@
    <% end %>
  <% end %>
 <% end %><br><br>
+</div>
 
-<% if user_signed_in? %>
-  <%= form_for [recipe, post_message], remote: true do |f| %>
-  <%= f.text_area :message %>
-  <%= f.submit "送信する" %>
-  <% end %>
+   <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+
+   <% recipe.post_messages.each do |post_message| %>
+   <%= post_message.message %>
+   <%= post_message.user.name %>
+
+   <% if post_message.user == current_user %>
+     <%= link_to "削除", recipe_post_message_path(recipe.id, post_message.id), method: :delete, remote: true  %>
+   <% end %>
+
+   <% end %>
+      </div>
+     </div>
+   </div>
+
+   <div class="row">
+    <div class="col-md-12">
+
+   <div class="text-center">
+   <% if user_signed_in? %>
+     <%= form_for [recipe, post_message], remote: true do |f| %>
+     <%= f.text_area :message %>
+     <%= f.submit "送信する" %>
+      <% end %>
+   <% end %>
+   </div>
+</td>
+    </div>
+　　</div>
+
+
+<% if user_signed_in? == false %>
+  <h2><%= link_to "レシピ一覧", root_path %></h2>
 <% end %>

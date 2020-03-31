@@ -2,4 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body { font-family: "M PLUS 1p"; }
+h1.body2 { font-family: "M PLUS Rounded 1c";
+}
+
+.wrapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

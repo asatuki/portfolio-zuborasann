@@ -75,3 +75,4 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
 end
+gem 'kaminari','~> 1.1.1'

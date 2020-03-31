@@ -1,27 +1,41 @@
-<link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
-
 <% if flash[:notice] %>
   <div class = "flash">
   <%= flash[:notice] %>
   </div>
 <% end %>
 
-<%= attachment_image_tag @recipe, :image, :fill, 500, 500, class: "", size:'500x500'%>
+<link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
 
-<h2>料理名</h2><%= @recipe.title %>
-<h2>材料一覧</h2><%= @recipe.ingredient %>
-<h2>調理手順</h2><%= @recipe.process %><br><br>
+<div class="container">
+
+  <div class="row">
+  	<div class="col-md-12">
+  	  <div class="text-center">
+  	    <%= attachment_image_tag @recipe, :image, :fill, 700, 500, class: "", size:'700x500'%>
+  	  </div>
+    </div>
+  </div>
+ <br>
+
+  <div class="row">
+  	<div class="col-md-12">
+  	  <div class="text-center">
+  	  	 <h1 class="body2">料理名</h1><h2><%= @recipe.title %></h2><br>
+  	  	 <h1 class="body2">材料一覧</h1><h2><%= @recipe.ingredient %></h2><br>
+         <h1 class="body2">調理手順</h1><h2><%= @recipe.process %></h2><br>
 
 <div id="post_message">
   <%= render partial: 'layouts/post_message', locals: {recipe: @recipe, post_message: @post_message } %>
 </div>
 
-<% if @recipe.user == current_user %>
-   <%= link_to "レシピの編集", edit_recipe_path %>
-   <%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
-<% elsif admin_signed_in? %>
-   <%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
-<% end %>
+<div class="text-right">
+  <% if @recipe.user == current_user %>
+    <%= link_to "レシピの編集", edit_recipe_path %>・
+    <%= link_to "レシピの削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
+  <% elsif admin_signed_in? %>
+    <%= link_to "レシピの削除", recipe_path(@recipe), method: :delete, "data-confirm" => "削除しますか？" %>
+  <% end %>
+</div>
 
 
 

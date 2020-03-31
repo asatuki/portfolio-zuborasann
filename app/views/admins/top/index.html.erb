@@ -14,7 +14,7 @@
       <% @recipes.each_slice(3) do |recipe3| %>
       <div class="row">
       	<% recipe3.each do |recipe| %>
-      	<div class="col-md- text-center">
+      	<div class="col-md-3">
       	  <td>
       	  	<div class="text-center">
       	  	<%= attachment_image_tag recipe, :image, :fill, 200, 200, class: "", size:'200x200'%><br>
