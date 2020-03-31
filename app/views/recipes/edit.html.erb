@@ -4,13 +4,12 @@
   </div>
 <% end %>
 
-<div class="text-center">
+
   <h1 class="body2">レシピ編集</h1>
-</div><br>
+  <br>
 
 <%= form_for @recipe, url: recipe_path(@recipe) do |f| %>
 
-  <div class="text-center">
   <%= f.attachment_field :image, placeholder: "画像" %>
 
     <h2>料理名</h2>

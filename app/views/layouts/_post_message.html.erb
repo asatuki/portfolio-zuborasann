@@ -35,7 +35,7 @@
     <div class="col-md-12">
 
    <div class="text-center">
-   <% if user_signed_in? %>
+   <% if user_signed_in? %><br>
      <%= form_for [recipe, post_message], remote: true do |f| %>
      <%= f.text_area :message %>
      <%= f.submit "送信する" %>
